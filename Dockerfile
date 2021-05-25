@@ -5,8 +5,6 @@
 
 FROM alpine:latest AS builder
 
-LABEL maintainer="Ranadeep Polavarapu <RanadeepPolavarapu@users.noreply.github.com>"
-
 ENV NGINX_VERSION 1.19.9
 ENV NGX_BROTLI_COMMIT 9aec15e2aa6feea2113119ba06460af70ab3ea62
 ENV PCRE_VERSION 8.44
