@@ -3,9 +3,11 @@
 # modules.
 ##################################################
 
-FROM alpine:latest AS builder
+FROM alpine:edge as builder
 
-ENV NGINX_VERSION 1.19.9
+LABEL maintainer="Ranadeep Polavarapu <RanadeepPolavarapu@users.noreply.github.com>"
+
+ENV NGINX_VERSION 1.19.10
 ENV NGX_BROTLI_COMMIT 9aec15e2aa6feea2113119ba06460af70ab3ea62
 ENV PCRE_VERSION 8.44
 ENV ZLIB_VERSION 1.2.11
@@ -203,7 +205,7 @@ RUN set -x; GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 RUN apk add openssl \
   && openssl req -x509 -newkey rsa:4096 -nodes -keyout /etc/ssl/private/localhost.key -out /etc/ssl/localhost.pem -days 365 -sha256 -subj '/CN=localhost'
 
-FROM alpine:latest
+FROM alpine:edge
 
 COPY --from=builder /usr/sbin/nginx /usr/sbin/nginx-debug /usr/sbin/
 COPY --from=builder /usr/lib/nginx /usr/lib/
